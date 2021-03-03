@@ -10,7 +10,7 @@ interface InitialState {
     date: string;
   }[];
   filter: {
-    filterBy: "creation" | "completion" | "alphabetically";
+    filterBy: "creation" | "completion" | "alphabetical";
     ascending: boolean;
     showDates: boolean;
   };
@@ -64,6 +64,9 @@ const todosSlice = createSlice({
 
       state.todos.unshift(todoItem);
     },
+    deleteTodo: (state, action) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    },
     toggleTodoCompletion: (state, action) => {
       state.todos = state.todos.map((todo) =>
         todo.id === action.payload
@@ -87,6 +90,7 @@ const todosSlice = createSlice({
 
 export const {
   addTodo,
+  deleteTodo,
   toggleTodoCompletion,
   toggleSortSettings,
   toggleShowDates,

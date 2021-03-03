@@ -13,24 +13,31 @@ import { toggleSortSettings, toggleShowDates } from "../slices/todos";
 
 const settings = [
   {
-    icon: <Date className="h-4 w-4 mr-4" />,
+    icon: <Date className="h-5 w-5 mr-3" />,
     title: "Day of creation",
     filterFunction: toggleSortSettings,
     setting: "creation",
   },
   {
-    icon: <Completed className="h-4 w-4 mr-4" />,
+    icon: <Completed className="h-5 w-5 mr-3" />,
     title: "Completion",
     filterFunction: toggleSortSettings,
     setting: "completion",
   },
   {
-    icon: <Alphabetically className="h-5 w-5 mr-4" />,
+    icon: <Alphabetically className="h-5 w-5 mr-3" />,
     title: "Alphabetically",
     filterFunction: toggleSortSettings,
-    setting: "alphabetically",
+    setting: "alphabetical",
   },
 ];
+
+const arrowDirection = (conditional: boolean) =>
+  conditional ? (
+    <ArrowUp className="h-4 text-blue-500" />
+  ) : (
+    <ArrowDown className="h-4 text-blue-500" />
+  );
 
 const Filter = () => {
   const filterBy = useSelector((state: RootState) => state.filter.filterBy);
@@ -39,7 +46,7 @@ const Filter = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div id="sort" className="absolute top-0 right-3 z-10">
+    <div className="relative flex justify-end py-2 z-10" id="sort">
       <PortalWithState
         closeOnOutsideClick
         closeOnEsc
@@ -48,18 +55,18 @@ const Filter = () => {
         {({ openPortal, closePortal, isOpen, portal }) => (
           <>
             <button
-              className="py-2 font-medium text-sm text-blue-500"
-              onClick={() => (isOpen ? closePortal() : openPortal())}
+              className="font-medium text-sm text-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
+              onClick={() => openPortal()}
             >
               Sort
             </button>
             {portal(
-              <div className="w-52 absolute top-10 left-0 p-2 space-y-2 divide-y divide-gray-600 bg-white border-2 border-blue-400 rounded-lg shadow-xl">
+              <div className="w-52 absolute top-10 right-0 p-2 space-y-2 divide-y divide-gray-600 bg-white border-2 border-blue-400 rounded-lg shadow-xl">
                 <div className="space-y-2">
                   {settings.map(({ icon, title, filterFunction, setting }) => (
                     <button
                       key={title}
-                      className="w-full flex items-center justify-between whitespace-nowrap"
+                      className="w-full flex items-center justify-between font-medium text-gray-700 text-sm whitespace-nowrap focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
                       onClick={() => dispatch(filterFunction(setting))}
                     >
                       <span className="flex items-center">
@@ -67,25 +74,17 @@ const Filter = () => {
                         {title}
                       </span>
 
-                      {filterBy === setting && (
-                        <>
-                          {ascending ? (
-                            <ArrowUp className="h-4 w-4 text-blue-500" />
-                          ) : (
-                            <ArrowDown className="h-4 w-4 text-blue-500" />
-                          )}
-                        </>
-                      )}
+                      {filterBy === setting && arrowDirection(ascending)}
                     </button>
                   ))}
                 </div>
                 <div className="w-full pt-2 pb-1">
                   <button
-                    className="w-full flex items-center justify-between text-left rounded-none"
+                    className="w-full flex items-center justify-between font-medium text-gray-700 text-sm text-left rounded-sm focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
                     onClick={() => dispatch(toggleShowDates())}
                   >
                     <span>Show titles</span>
-                    {showDates && <Check className="h-4 w-4 text-blue-500" />}
+                    {showDates && <Check className="h-5 w-5 text-blue-500" />}
                   </button>
                 </div>
               </div>

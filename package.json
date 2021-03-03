@@ -19,6 +19,7 @@
     "postcss-cli": "8.x",
     "postcss-preset-env": "6.x",
     "react": "^17.0.1",
+    "react-contextmenu": "^2.14.0",
     "react-dom": "^17.0.1",
     "react-portal": "^4.2.1",
     "react-redux": "^7.2.2",

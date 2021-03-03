@@ -1,22 +1,15 @@
-# cra-template-tailwindcss-typescript
+## 📝 Mint Todo
 
-A streamlined [Tailwind CSS](https://tailwindcss.com) template for [Create React App](https://github.com/facebook/create-react-app) in [TypeScript](https://www.typescriptlang.org/).
+A stress-free and simple todo built with React, Redux, and Tailwind.
 
-> This template installs and sets up [Tailwind CSS](https://tailwindcss.com) with TypeScript support.
+**To start your own development environment**
+`git clone https://github.com/asharonbaltazar/mintTodo.git`
+`cd mintTodo`
+`yarn add`
+`npm start`
 
-## Usage
+**That's it! Happy coding!** 🎉
 
-```bash
-npx create-react-app --template tailwindcss-typescript
-```
+---
 
-## Credits
-
-This project was made possible thanks to the following projects.
-
-1. [GeoffSelby/cra-template-tailwindcss](https://github.com/GeoffSelby/cra-template-tailwindcss) - A streamlined Tailwind CSS template for Create React App (in JavaScript).
-2. [cra-template-typescript](https://github.com/facebook/create-react-app/tree/master/packages/cra-template-typescript) - An official TypeScript template for create-react-app.
-
-## License
-
-MIT © [Sung M. Kim](https://sung.codes)
+Booststrapped using the fantastic [cra-template-tailwindcss-typescript](https://github.com/dance2die/cra-template-tailwindcss-typescript)

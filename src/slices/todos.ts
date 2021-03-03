@@ -9,6 +9,11 @@ interface InitialState {
     completed: boolean;
     date: string;
   }[];
+  filter: {
+    filterBy: "creation" | "completion" | "alphabetically";
+    ascending: boolean;
+    showDates: boolean;
+  };
 }
 
 const initialState = {
@@ -23,21 +28,26 @@ const initialState = {
       id: uuid.generate(),
       title: "Lorem ipsum blah blah blah",
       completed: false,
-      date: dayjs().toISOString(),
+      date: dayjs().subtract(1, "day").toISOString(),
     },
     {
       id: uuid.generate(),
       title: "This is an example",
       completed: false,
-      date: dayjs().toISOString(),
+      date: dayjs().subtract(2, "day").toISOString(),
     },
     {
       id: uuid.generate(),
       title: "You've reached the end",
       completed: false,
-      date: dayjs().toISOString(),
+      date: dayjs().subtract(3, "day").toISOString(),
     },
   ],
+  filter: {
+    filterBy: "creation",
+    ascending: false,
+    showDates: true,
+  },
 } as InitialState;
 
 const todosSlice = createSlice({
@@ -61,8 +71,24 @@ const todosSlice = createSlice({
           : todo
       );
     },
+    toggleSortSettings: (state, action) => {
+      if (action.payload === state.filter.filterBy) {
+        state.filter.ascending = !state.filter.ascending;
+      } else {
+        state.filter.ascending = false;
+      }
+      state.filter.filterBy = action.payload;
+    },
+    toggleShowDates: (state) => {
+      state.filter.showDates = !state.filter.showDates;
+    },
   },
 });
 
-export const { addTodo, toggleTodoCompletion } = todosSlice.actions;
+export const {
+  addTodo,
+  toggleTodoCompletion,
+  toggleSortSettings,
+  toggleShowDates,
+} = todosSlice.actions;
 export default todosSlice.reducer;

@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../store";
 import { addTodo } from "../slices/todos";
+import { Add } from "./icons/Icons";
 
 const AddInput = () => {
   const [todoTitle, setTodoTitle] = useState("");
@@ -28,7 +29,7 @@ const AddInput = () => {
           onChange={(e) => setTodoTitle(e.target.value)}
         />
         <button className="absolute right-0 focus:outline-none" type="submit">
-          <Add />
+          <Add className="h-6 w-6" />
         </button>
       </div>
     </form>
@@ -36,20 +37,3 @@ const AddInput = () => {
 };
 
 export default AddInput;
-
-const Add = () => (
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-    />
-  </svg>
-);

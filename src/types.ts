@@ -7,5 +7,5 @@ export type Todos = {
 export type SortOptions = {
   filterBy: "creation" | "completion" | "alphabetical";
   ascending: boolean;
-  showDates: boolean;
+  showTitles: boolean;
 };

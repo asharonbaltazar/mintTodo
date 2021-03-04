@@ -23,7 +23,7 @@ const Todo = ({ todo }: IProps) => {
   const contextMenu = [
     {
       title: "Copy todo",
-      className: "text-gray-700 hover:text-yellow-400",
+      className: "text-gray-700 hover:text-gray-800",
       icon: <Duplicate className="h-5 w-5" />,
       onClickFunction: () => {
         if (navigator.clipboard) {
@@ -33,7 +33,7 @@ const Todo = ({ todo }: IProps) => {
     },
     {
       title: "Delete",
-      className: "text-gray-700 hover:text-red-400",
+      className: "text-red-600",
       icon: <Delete className="h-5 w-5" />,
       onClickFunction: () => dispatch(deleteTodo(id)),
     },

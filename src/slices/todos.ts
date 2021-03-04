@@ -12,7 +12,7 @@ interface InitialState {
   filter: {
     filterBy: "creation" | "completion" | "alphabetical";
     ascending: boolean;
-    showDates: boolean;
+    showTitles: boolean;
   };
 }
 
@@ -46,7 +46,7 @@ const initialState = {
   filter: {
     filterBy: "creation",
     ascending: false,
-    showDates: true,
+    showTitles: true,
   },
 } as InitialState;
 
@@ -83,7 +83,7 @@ const todosSlice = createSlice({
       state.filter.filterBy = action.payload;
     },
     toggleShowDates: (state) => {
-      state.filter.showDates = !state.filter.showDates;
+      state.filter.showTitles = !state.filter.showTitles;
     },
   },
 });

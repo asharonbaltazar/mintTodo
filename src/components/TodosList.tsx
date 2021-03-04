@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import Filter from "./Filter";
@@ -40,8 +41,8 @@ const sortMap = {
     return Object.values(creationDateSortedTodos)
       .sort((a, b) =>
         ascending
-          ? Number(new Date(b[0])) - Number(new Date(a[0]))
-          : Number(new Date(a[0])) - Number(new Date(b[0]))
+          ? Number(new Date(a[0])) - Number(new Date(b[0]))
+          : Number(new Date(b[0])) - Number(new Date(a[0]))
       )
       .map(([date, todos]) => [dayjs(date).format("dddd"), todos]);
   },
@@ -49,7 +50,7 @@ const sortMap = {
     // Split todos into completed and not-completed tuples [completed, todos]
     const completionSortedTodos = Object.entries(
       todos.reduce((acc, todo) => {
-        const completed = todo.completed ? "Completed" : "";
+        const completed = todo.completed ? "Completed" : "In Progress";
         if (!acc[completed]) {
           acc[completed] = [];
         }
@@ -60,7 +61,7 @@ const sortMap = {
 
     // Sort by comparing "Completed" with an empty string
     return Object.values(completionSortedTodos).sort((a, b) =>
-      ascending ? a[0].localeCompare(b[0]) : b[0].localeCompare(a[0])
+      ascending ? b[0].localeCompare(a[0]) : a[0].localeCompare(b[0])
     );
   },
   alphabetical: (todos: Todos, ascending: boolean): SortReturn => {
@@ -101,12 +102,25 @@ const sort = (
 const TodosList = () => {
   const todos = useSelector((state: RootState) => state.todos);
   const sortOptions = useSelector((state: RootState) => state.filter);
+  const sortedTodos = useMemo(() => sort(todos, sortOptions), [
+    todos,
+    sortOptions,
+  ]);
+  const [collapsibleHeaders, setCollapsibleHeaders] = useState<string[]>([]);
+  // Reset header state with sortedTodos change
+  useEffect(() => setCollapsibleHeaders([]), [sortOptions.filterBy]);
 
   return (
     <div className="w-1/3 relative space-y-2">
       <Filter />
-      {sort(todos, sortOptions).map(([title, todos], index) => (
-        <TodoGroup key={title + index} title={title} todos={todos} />
+      {sortedTodos.map(([title, todos], index) => (
+        <TodoGroup
+          key={title + index}
+          title={title}
+          todos={todos}
+          setCollapsibleHeaders={setCollapsibleHeaders}
+          collapsibleHeaders={collapsibleHeaders}
+        />
       ))}
     </div>
   );

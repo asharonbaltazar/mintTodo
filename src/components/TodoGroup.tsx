@@ -48,7 +48,7 @@ const TodoGroup = ({
           {title.length ? showArrow(collapsibleHeaders.includes(title)) : null}
         </button>
       )}
-      <div>
+      <div className="space-y-3">
         {collapsibleHeaders.includes(title) ? null : (
           <>
             {todos.map((todo) => (

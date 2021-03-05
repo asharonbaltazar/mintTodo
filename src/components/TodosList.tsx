@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import Filter from "./Filter";
 import dayjs from "dayjs";
 import { Todos, SortOptions } from "../types";
 import TodoGroup from "./TodoGroup";
@@ -111,8 +110,7 @@ const TodosList = () => {
   useEffect(() => setCollapsibleHeaders([]), [sortOptions.filterBy]);
 
   return (
-    <div className="w-1/3 relative space-y-2">
-      <Filter />
+    <>
       {sortedTodos.map(([title, todos], index) => (
         <TodoGroup
           key={title + index}
@@ -122,7 +120,7 @@ const TodosList = () => {
           collapsibleHeaders={collapsibleHeaders}
         />
       ))}
-    </div>
+    </>
   );
 };
 

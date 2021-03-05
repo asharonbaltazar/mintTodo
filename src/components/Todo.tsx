@@ -75,7 +75,7 @@ const Todo = ({ todo }: IProps) => {
         {contextMenu.map((menuItem) => (
           <MenuItem key={menuItem.title}>
             <button
-              className={`${menuItem.className} w-full space-x-2 flex items-center  font-medium`}
+              className={`${menuItem.className} w-full space-x-2 flex items-center  font-medium focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none`}
               onClick={menuItem.onClickFunction}
             >
               {menuItem.icon}

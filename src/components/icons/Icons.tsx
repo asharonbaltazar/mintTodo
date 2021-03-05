@@ -74,6 +74,15 @@ export const Check = ({ className }: { className: string }) => (
   </svg>
 );
 
+export const Checks = ({ className }: { className: string }) => (
+  <svg className={className} viewBox="0 0 24 24">
+    <path
+      d="M.41 13.41L6 19l1.41-1.42L1.83 12m20.41-6.42L11.66 16.17L7.5 12l-1.43 1.41L11.66 19l12-12M18 7l-1.41-1.42l-6.35 6.35l1.42 1.41L18 7z"
+      fill="currentColor"
+    ></path>
+  </svg>
+);
+
 export const ArrowUp = ({ className }: { className: string }) => (
   <svg
     className={className}
@@ -86,7 +95,7 @@ export const ArrowUp = ({ className }: { className: string }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M5 10l7-7m0 0l7 7m-7-7v18"
+      d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
     />
   </svg>
 );
@@ -103,7 +112,7 @@ export const ArrowDown = ({ className }: { className: string }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+      d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"
     />
   </svg>
 );
@@ -189,6 +198,68 @@ export const ChevronUp = ({ className }: { className: string }) => (
       strokeLinejoin="round"
       strokeWidth={2}
       d="M5 15l7-7 7 7"
+    />
+  </svg>
+);
+
+export const ChevronRight = ({ className }: { className: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
+  </svg>
+);
+
+export const MenuDots = ({ className }: { className: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+    />
+  </svg>
+);
+
+export const Sort = ({ className }: { className: string }) => (
+  <svg className={className} viewBox="0 0 24 24">
+    <g fill="none">
+      <path
+        d="M2.22 9.22l4.494-4.495a.75.75 0 0 1 .976-.073l.085.072l4.504 4.495a.75.75 0 0 1-.975 1.135l-.084-.073l-3.223-3.217V18.76a.75.75 0 0 1-.648.743l-.101.007a.75.75 0 0 1-.743-.648l-.007-.102l-.001-11.698L3.28 10.28a.75.75 0 0 1-.976.073l-.084-.073a.75.75 0 0 1-.073-.976l.073-.084l4.494-4.495L2.22 9.22zm14.43-4.718l.1-.007a.75.75 0 0 1 .744.648l.007.102l-.001 11.696l3.22-3.221a.75.75 0 0 1 .976-.073l.084.072a.75.75 0 0 1 .073.977l-.072.084l-4.497 4.5a.75.75 0 0 1-.976.073l-.084-.072l-4.504-4.5a.75.75 0 0 1 .976-1.134l.084.072L16 16.938V5.245a.75.75 0 0 1 .65-.743l.1-.007l-.1.007z"
+        fill="currentColor"
+      ></path>
+    </g>
+  </svg>
+);
+
+export const Title = ({ className }: { className: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M4 6h16M4 10h16M4 14h16M4 18h16"
     />
   </svg>
 );

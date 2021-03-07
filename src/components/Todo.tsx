@@ -46,7 +46,7 @@ const Todo = ({ todo }: IProps) => {
   return (
     <>
       <ContextMenuTrigger id={todo.id} holdToDisplay={500}>
-        <div className="w-full p-4 flex items-center justify-between bg-white rounded-lg shadow">
+        <div className="w-full my-2 p-4 flex items-center justify-between bg-white rounded-lg shadow">
           <div>
             <span className="text-sm text-gray-500 cursor-default">
               <abbr

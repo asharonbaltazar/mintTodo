@@ -25,7 +25,9 @@ const TodoGroup = ({
   collapsibleHeaders,
   setCollapsibleHeaders,
 }: IProps) => {
-  const showTitles = useSelector((state: RootState) => state.filter.showTitles);
+  const titlesDisplayState = useSelector(
+    (state: RootState) => state.filter.showTitles
+  );
 
   const onClick = (title: string) => {
     collapsibleHeaders.includes(title)
@@ -37,9 +39,9 @@ const TodoGroup = ({
 
   return (
     <Fragment key={title}>
-      {showTitles && (
+      {titlesDisplayState && (
         <button
-          className="w-full flex items-center justify-between focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
+          className="w-full flex items-center justify-between my-2 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
           onClick={() => onClick(title)}
         >
           <h2 className="sticky top-0 left-0 p2-4 px-3 bg-white text-gray-500">
@@ -48,8 +50,8 @@ const TodoGroup = ({
           {title.length ? showArrow(collapsibleHeaders.includes(title)) : null}
         </button>
       )}
-      <div className="space-y-3">
-        {collapsibleHeaders.includes(title) ? null : (
+      <div>
+        {collapsibleHeaders.includes(title) && titlesDisplayState ? null : (
           <>
             {todos.map((todo) => (
               <Todo key={todo.id + todo.completed} todo={todo} />

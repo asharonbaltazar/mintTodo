@@ -114,7 +114,7 @@ const Menu = () => {
   ] as Settings;
 
   return (
-    <div className="relative w-full px-3 flex justify-between py-2 z-10">
+    <div className="relative w-full px-3 flex justify-between py-2">
       <h6 className="text-sm text-gray-500">
         Sorting {`${sortTitleMap[filterBy]}`}
       </h6>

@@ -6,7 +6,7 @@ const Body = () => {
   return (
     <div className="w-full flex flex-col items-center mt-5 space-y-5">
       <AddInput />
-      <div className="w-1/3 space-y-2">
+      <div className="w-96">
         <Menu />
         <TodosList />
       </div>

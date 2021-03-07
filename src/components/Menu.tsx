@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import MenuDropdown from "./MenuDropdown";
 import {
   Alphabetically,
@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 type Settings = [
   title: string,
   settings: {
-    rightIcon: JSX.Element;
+    rightIcon: (className: string) => JSX.Element;
     settingsTitle: string;
     onClick: any;
     setting: string;
@@ -32,6 +32,12 @@ const arrowDirection = (conditional: boolean) =>
   ) : (
     <ArrowDown className="h-4 text-blue-500" />
   );
+
+const sortTitleMap = {
+  alphabetical: "alphabetically",
+  creation: "by date of creation",
+  completion: "by completion",
+};
 
 const Menu = () => {
   // Modal state
@@ -51,9 +57,11 @@ const Menu = () => {
       "Actions",
       [
         {
-          rightIcon: <Checks className="h-5 w-5 mr-3" />,
+          rightIcon: (className: string) => <Checks className={className} />,
           settingsTitle: "Select",
-          onClick: () => {},
+          onClick: () => {
+            setDropdownState(false);
+          },
           setting: "select",
         },
       ],
@@ -62,7 +70,7 @@ const Menu = () => {
       "Sort",
       [
         {
-          rightIcon: <Date className="h-5 w-5 mr-3" />,
+          rightIcon: (className) => <Date className={className} />,
           settingsTitle: "Day of creation",
           onClick: () => dispatch(toggleSortSettings("creation")),
           setting: "creation",
@@ -70,7 +78,7 @@ const Menu = () => {
             filterBy === setting && arrowDirection(ascending),
         },
         {
-          rightIcon: <Completed className="h-5 w-5 mr-3" />,
+          rightIcon: (className) => <Completed className={className} />,
           settingsTitle: "Completion",
           onClick: () => dispatch(toggleSortSettings("completion")),
           setting: "completion",
@@ -78,7 +86,7 @@ const Menu = () => {
             filterBy === setting && arrowDirection(ascending),
         },
         {
-          rightIcon: <Alphabetically className="h-5 w-5 mr-3" />,
+          rightIcon: (className) => <Alphabetically className={className} />,
           settingsTitle: "Alphabetically",
           onClick: () => dispatch(toggleSortSettings("alphabetical")),
           setting: "alphabetical",
@@ -91,7 +99,7 @@ const Menu = () => {
       "Options",
       [
         {
-          rightIcon: <Title className="h-5 w-5 mr-3" />,
+          rightIcon: (className) => <Title className={className} />,
           settingsTitle: "Show titles",
           onClick: () => {
             dispatch(toggleShowDates());
@@ -106,9 +114,12 @@ const Menu = () => {
   ] as Settings;
 
   return (
-    <div className="relative w-full flex justify-end py-2 z-10">
+    <div className="relative w-full px-3 flex justify-between py-2 z-10">
+      <h6 className="text-sm text-gray-500">
+        Sorting {`${sortTitleMap[filterBy]}`}
+      </h6>
       <button
-        className="mr-3 font-medium text-sm text-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
+        className="font-medium text-sm text-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
         onClick={() =>
           setDropdownState((currentState) => (currentState = !dropDownState))
         }
@@ -122,7 +133,7 @@ const Menu = () => {
         setDropdownState={setDropdownState}
       >
         {settings.map(([title, settings], index) => (
-          <div key={title + index}>
+          <Fragment key={title + index}>
             <h6 className="px-2 pt-2 text-sm text-gray-500">{title}</h6>
             {settings.map(
               ({ rightIcon, settingsTitle, setting, onClick, leftIcon }) => (
@@ -132,7 +143,7 @@ const Menu = () => {
                   onClick={() => onClick()}
                 >
                   <span className="flex items-center">
-                    {rightIcon}
+                    {rightIcon("h-5 w-5 mr-3")}
                     {settingsTitle}
                   </span>
 
@@ -140,7 +151,7 @@ const Menu = () => {
                 </button>
               )
             )}
-          </div>
+          </Fragment>
         ))}
       </MenuDropdown>
     </div>
